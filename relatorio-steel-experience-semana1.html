@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Tráfego — Steel Experience Chalés</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #f5f5f0;
+            --red: #e63946;
+            --gray: #6b6b6b;
+            --gray-light: #d4d4d4;
+            --border-subtle: rgba(245, 245, 240, 0.1);
+            --border-medium: rgba(245, 245, 240, 0.15);
+            --bg-subtle: rgba(245, 245, 240, 0.02);
+            --green: #22c55e;
+            --yellow: #eab308;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .report-date {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 64px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hero-meta-label {
+            font-size: 11px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-meta-value {
+            font-size: 14px;
+        }
+
+        /* Section */
+        section {
+            padding: 64px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Metric Cards */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .metric-card {
+            border: 1px solid var(--border-medium);
+            padding: 24px;
+            position: relative;
+        }
+
+        .metric-card.highlight {
+            border-color: var(--red);
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-family: 'Instrument Serif', serif;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .metric-value.small {
+            font-size: 28px;
+        }
+
+        .metric-change {
+            font-size: 11px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .metric-change.positive {
+            color: var(--green);
+        }
+
+        .metric-change.negative {
+            color: var(--red);
+        }
+
+        .metric-change.neutral {
+            color: var(--gray);
+        }
+
+        /* Chart */
+        .chart-container {
+            margin-top: 40px;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 200px;
+            padding-bottom: 40px;
+            position: relative;
+        }
+
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar {
+            width: 100%;
+            max-width: 60px;
+            background: var(--red);
+            position: relative;
+            min-height: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: var(--white);
+            white-space: nowrap;
+        }
+
+        .bar-label {
+            font-size: 11px;
+            color: var(--gray);
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            transform: translateY(100%);
+            padding-top: 8px;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .data-table th {
+            font-size: 11px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 400;
+        }
+
+        .data-table td {
+            font-size: 13px;
+        }
+
+        .data-table tr:hover td {
+            background: var(--bg-subtle);
+        }
+
+        .data-table .number {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid;
+        }
+
+        .badge.good {
+            color: var(--green);
+            border-color: var(--green);
+        }
+
+        .badge.ok {
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .badge.bad {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Comparison */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .comparison-card {
+            border: 1px solid var(--border-medium);
+            padding: 32px;
+        }
+
+        .comparison-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-label {
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .comparison-value {
+            font-size: 13px;
+        }
+
+        /* Funnel */
+        .funnel-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .funnel-step:last-child {
+            border-bottom: none;
+        }
+
+        .funnel-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--red);
+            min-width: 120px;
+            text-align: right;
+        }
+
+        .funnel-info {
+            flex: 1;
+        }
+
+        .funnel-label {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .funnel-rate {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .funnel-bar-container {
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .funnel-bar {
+            height: 8px;
+            background: var(--red);
+        }
+
+        /* Status */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .status-card {
+            border: 1px solid var(--border-medium);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .status-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .status-value {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .status-label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Plan */
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .plan-card {
+            border: 1px solid var(--border-medium);
+            padding: 32px;
+        }
+
+        .plan-card.highlight {
+            border-color: var(--red);
+        }
+
+        .plan-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        .plan-list {
+            list-style: none;
+        }
+
+        .plan-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .plan-list li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-list li::before {
+            content: '→';
+            color: var(--red);
+        }
+
+        .plan-meta {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .plan-meta-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .plan-meta-label {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .plan-meta-value {
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 0.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-grid,
+            .plan-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        @media print {
+            body::before {
+                display: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">Insurrecta</div>
+                <div class="report-date">Relatório gerado em 26/01/2026</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <h1>Steel Experience <span>Chalés</span></h1>
+                <p style="color: var(--gray); margin-top: 8px;">Relatório de Performance — Semana 1</p>
+                
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-label">Período</span>
+                        <span class="hero-meta-value">20 — 24 Janeiro 2026</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-label">Dias Ativos</span>
+                        <span class="hero-meta-value">5 dias</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-label">Data do Evento</span>
+                        <span class="hero-meta-value">19 — 21 Fev 2026</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-label">Dias Restantes</span>
+                        <span class="hero-meta-value">24 dias</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumo Executivo -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Resumo Executivo</h2>
+                    <p>Métricas principais do período</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Investimento</div>
+                        <div class="metric-value small">R$ 439</div>
+                        <div class="metric-change neutral">
+                            ~ R$ 87/dia
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Impressões</div>
+                        <div class="metric-value small">10.792</div>
+                        <div class="metric-change neutral">
+                            ~ 2.158/dia
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Cliques</div>
+                        <div class="metric-value small">267</div>
+                        <div class="metric-change neutral">
+                            ~ 53/dia
+                        </div>
+                    </div>
+                    <div class="metric-card highlight">
+                        <div class="metric-label">Init Checkouts</div>
+                        <div class="metric-value small">31</div>
+                        <div class="metric-change neutral">
+                            ~ 6,2/dia
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metrics-grid" style="margin-top: 16px;">
+                    <div class="metric-card">
+                        <div class="metric-label">CTR</div>
+                        <div class="metric-value small">2,47%</div>
+                        <div class="metric-change positive">
+                            ✓ +0,61pp vs anterior
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">CPC</div>
+                        <div class="metric-value small">R$ 1,65</div>
+                        <div class="metric-change negative">
+                            ✕ +21,6% vs anterior
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">CPM</div>
+                        <div class="metric-value small">R$ 40,70</div>
+                        <div class="metric-change negative">
+                            ✕ +61,4% vs anterior
+                        </div>
+                    </div>
+                    <div class="metric-card highlight">
+                        <div class="metric-label">Custo/Checkout</div>
+                        <div class="metric-value small">R$ 14,17</div>
+                        <div class="metric-change positive">
+                            ✓ -51,3% vs anterior
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance por Dia -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Performance por Dia</h2>
+                    <p>Evolução de checkouts iniciados e investimento</p>
+                </div>
+
+                <div class="chart-container">
+                    <div class="bar-chart">
+                        <div class="bar-group">
+                            <div class="bar" style="height: 18%;">
+                                <span class="bar-value">2</span>
+                            </div>
+                            <span class="bar-label">20/01</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 73%;">
+                                <span class="bar-value">8</span>
+                            </div>
+                            <span class="bar-label">21/01</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 27%;">
+                                <span class="bar-value">3</span>
+                            </div>
+                            <span class="bar-label">22/01</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 64%;">
+                                <span class="bar-value">7</span>
+                            </div>
+                            <span class="bar-label">23/01</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="height: 100%;">
+                                <span class="bar-value">11</span>
+                            </div>
+                            <span class="bar-label">24/01</span>
+                        </div>
+                    </div>
+
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: var(--red);"></div>
+                            <span>Init Checkouts</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela detalhada por dia -->
+                <table class="data-table" style="margin-top: 48px;">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Investimento</th>
+                            <th>Impressões</th>
+                            <th>Cliques</th>
+                            <th>CTR</th>
+                            <th>Checkouts</th>
+                            <th>Custo/Checkout</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20/01</td>
+                            <td class="number">R$ 66,73</td>
+                            <td class="number">657</td>
+                            <td class="number">28</td>
+                            <td class="number">4,26%</td>
+                            <td class="number">2</td>
+                            <td class="number">R$ 33,37</td>
+                        </tr>
+                        <tr>
+                            <td>21/01</td>
+                            <td class="number">R$ 94,83</td>
+                            <td class="number">2.379</td>
+                            <td class="number">58</td>
+                            <td class="number">2,43%</td>
+                            <td class="number">8</td>
+                            <td class="number">R$ 11,85</td>
+                        </tr>
+                        <tr>
+                            <td>22/01</td>
+                            <td class="number">R$ 90,34</td>
+                            <td class="number">2.434</td>
+                            <td class="number">51</td>
+                            <td class="number">2,08%</td>
+                            <td class="number">3</td>
+                            <td class="number">R$ 30,11</td>
+                        </tr>
+                        <tr>
+                            <td>23/01</td>
+                            <td class="number">R$ 92,73</td>
+                            <td class="number">2.649</td>
+                            <td class="number">57</td>
+                            <td class="number">1,46%</td>
+                            <td class="number">7</td>
+                            <td class="number">R$ 13,25</td>
+                        </tr>
+                        <tr>
+                            <td>24/01</td>
+                            <td class="number">R$ 94,42</td>
+                            <td class="number">2.673</td>
+                            <td class="number">73</td>
+                            <td class="number">2,53%</td>
+                            <td class="number">11</td>
+                            <td class="number">R$ 8,58</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Performance por Criativo -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Performance por Criativo</h2>
+                    <p>Ranking de anúncios por checkouts e CTR</p>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Criativo</th>
+                            <th>Investimento</th>
+                            <th>Impressões</th>
+                            <th>Cliques</th>
+                            <th>CTR</th>
+                            <th>Checkouts</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01-cris-chalés</td>
+                            <td class="number">R$ 174,42</td>
+                            <td class="number">4.163</td>
+                            <td class="number">87</td>
+                            <td class="number">2,10%</td>
+                            <td class="number">11</td>
+                            <td><span class="badge good">Campeão</span></td>
+                        </tr>
+                        <tr>
+                            <td>11-luiz-chalés</td>
+                            <td class="number">R$ 127,43</td>
+                            <td class="number">3.366</td>
+                            <td class="number">63</td>
+                            <td class="number">1,87%</td>
+                            <td class="number">8</td>
+                            <td><span class="badge good">Campeão</span></td>
+                        </tr>
+                        <tr>
+                            <td>02-cris-chalés</td>
+                            <td class="number">R$ 35,47</td>
+                            <td class="number">609</td>
+                            <td class="number">33</td>
+                            <td class="number">5,38%</td>
+                            <td class="number">4</td>
+                            <td><span class="badge good">Campeão</span></td>
+                        </tr>
+                        <tr>
+                            <td>04-cris-chalés</td>
+                            <td class="number">R$ 18,52</td>
+                            <td class="number">493</td>
+                            <td class="number">39</td>
+                            <td class="number">7,93%</td>
+                            <td class="number">3</td>
+                            <td><span class="badge ok">Escalar</span></td>
+                        </tr>
+                        <tr>
+                            <td>07-cris-chalés</td>
+                            <td class="number">R$ 25,79</td>
+                            <td class="number">543</td>
+                            <td class="number">20</td>
+                            <td class="number">3,69%</td>
+                            <td class="number">2</td>
+                            <td><span class="badge ok">Testar</span></td>
+                        </tr>
+                        <tr>
+                            <td>09-luiz-chalés</td>
+                            <td class="number">R$ 29,17</td>
+                            <td class="number">751</td>
+                            <td class="number">13</td>
+                            <td class="number">1,73%</td>
+                            <td class="number">2</td>
+                            <td><span class="badge ok">Testar</span></td>
+                        </tr>
+                        <tr>
+                            <td>10-luiz-chalés</td>
+                            <td class="number">R$ 21,45</td>
+                            <td class="number">555</td>
+                            <td class="number">8</td>
+                            <td class="number">1,44%</td>
+                            <td class="number">1</td>
+                            <td><span class="badge bad">Pausar</span></td>
+                        </tr>
+                        <tr>
+                            <td>05-cris-chalés</td>
+                            <td class="number">R$ 5,95</td>
+                            <td class="number">239</td>
+                            <td class="number">3</td>
+                            <td class="number">1,26%</td>
+                            <td class="number">0</td>
+                            <td><span class="badge bad">Pausar</span></td>
+                        </tr>
+                        <tr>
+                            <td>08-cris-chalés</td>
+                            <td class="number">R$ 1,06</td>
+                            <td class="number">43</td>
+                            <td class="number">1</td>
+                            <td class="number">2,33%</td>
+                            <td class="number">0</td>
+                            <td><span class="badge bad">Pausar</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Comparativo -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Comparativo com Edição Anterior</h2>
+                    <p>Steel Experience 4 (Jul-Ago 2025) vs Chalés (Jan 2026)</p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>Steel Experience 4</h3>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Período</span>
+                            <span class="comparison-value">Jul-Ago 2025</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Dias de campanha</span>
+                            <span class="comparison-value">20 dias</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Investimento total</span>
+                            <span class="comparison-value">R$ 2.154,95</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">CTR</span>
+                            <span class="comparison-value">1,86%</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">CPC</span>
+                            <span class="comparison-value">R$ 1,35</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">CPM</span>
+                            <span class="comparison-value">R$ 25,22</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Taxa Clique→Checkout</span>
+                            <span class="comparison-value">4,65%</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Custo/Checkout</span>
+                            <span class="comparison-value">R$ 29,12</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Checkouts totais</span>
+                            <span class="comparison-value">74</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Alunos matriculados</span>
+                            <span class="comparison-value">18</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Faturamento</span>
+                            <span class="comparison-value">R$ 27.341,51</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">ROAS Tráfego</span>
+                            <span class="comparison-value">12,69x</span>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card" style="border-color: var(--red);">
+                        <h3>Steel Experience Chalés</h3>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Período</span>
+                            <span class="comparison-value">Jan 2026 (em andamento)</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Dias de campanha</span>
+                            <span class="comparison-value">5 dias</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Investimento total</span>
+                            <span class="comparison-value">R$ 439,26</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">CTR</span>
+                            <span class="comparison-value" style="color: var(--green);">2,47% ↑</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">CPC</span>
+                            <span class="comparison-value" style="color: var(--red);">R$ 1,65 ↑</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">CPM</span>
+                            <span class="comparison-value" style="color: var(--red);">R$ 40,70 ↑</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Taxa Clique→Checkout</span>
+                            <span class="comparison-value" style="color: var(--green);">11,61% ↑</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Custo/Checkout</span>
+                            <span class="comparison-value" style="color: var(--green);">R$ 14,17 ↓</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Checkouts totais</span>
+                            <span class="comparison-value">31</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Alunos matriculados</span>
+                            <span class="comparison-value">—</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Faturamento</span>
+                            <span class="comparison-value">—</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">ROAS Tráfego</span>
+                            <span class="comparison-value">—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funil -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Funil de Conversão</h2>
+                    <p>Da impressão ao lead qualificado</p>
+                </div>
+
+                <div class="funnel-container">
+                    <div class="funnel-step">
+                        <div class="funnel-number">10.792</div>
+                        <div class="funnel-info">
+                            <div class="funnel-label">Impressões</div>
+                            <div class="funnel-rate">100% do alcance</div>
+                        </div>
+                        <div class="funnel-bar-container">
+                            <div class="funnel-bar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-step">
+                        <div class="funnel-number">267</div>
+                        <div class="funnel-info">
+                            <div class="funnel-label">Cliques no Link</div>
+                            <div class="funnel-rate">2,47% CTR</div>
+                        </div>
+                        <div class="funnel-bar-container">
+                            <div class="funnel-bar" style="width: 24.7%;"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-step">
+                        <div class="funnel-number">31</div>
+                        <div class="funnel-info">
+                            <div class="funnel-label">Init Checkouts</div>
+                            <div class="funnel-rate">11,61% dos cliques</div>
+                        </div>
+                        <div class="funnel-bar-container">
+                            <div class="funnel-bar" style="width: 11.6%;"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-step">
+                        <div class="funnel-number">6</div>
+                        <div class="funnel-info">
+                            <div class="funnel-label">Leads Qualificados</div>
+                            <div class="funnel-rate">Em processo de SDR</div>
+                        </div>
+                        <div class="funnel-bar-container">
+                            <div class="funnel-bar" style="width: 5.6%;"></div>
+                        </div>
+                    </div>
+                    <div class="funnel-step">
+                        <div class="funnel-number">0</div>
+                        <div class="funnel-info">
+                            <div class="funnel-label">Vendas Confirmadas</div>
+                            <div class="funnel-rate">Aguardando conversão</div>
+                        </div>
+                        <div class="funnel-bar-container">
+                            <div class="funnel-bar" style="width: 1%; opacity: 0.3;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Atual -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Status Atual</h2>
+                    <p>Posição atual da campanha</p>
+                </div>
+
+                <div class="status-grid">
+                    <div class="status-card">
+                        <div class="status-icon">🎯</div>
+                        <div class="status-value">15</div>
+                        <div class="status-label">Meta de Vagas</div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-icon">📋</div>
+                        <div class="status-value">6</div>
+                        <div class="status-label">Leads em SDR</div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-icon">✓</div>
+                        <div class="status-value">0</div>
+                        <div class="status-label">Vendas Confirmadas</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plano da Semana -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Plano — Semana 2</h2>
+                    <p>27 Janeiro — 02 Fevereiro 2026</p>
+                </div>
+
+                <div class="plan-grid">
+                    <div class="plan-card highlight">
+                        <h3>Tráfego</h3>
+                        <ul class="plan-list">
+                            <li>Subir campanhas de WhatsApp (novo funil)</li>
+                            <li>Separar investimento entre campanhas (Direto + WhatsApp)</li>
+                            <li>Implementar novos criativos (entrega: terça-feira)</li>
+                            <li>Manter criativos campeões ativos</li>
+                        </ul>
+                        <div class="plan-meta">
+                            <div class="plan-meta-row">
+                                <span class="plan-meta-label">Orçamento/dia</span>
+                                <span class="plan-meta-value">~ R$ 80-90</span>
+                            </div>
+                            <div class="plan-meta-row">
+                                <span class="plan-meta-label">Plataforma</span>
+                                <span class="plan-meta-value">Meta Ads</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plan-card">
+                        <h3>Metas da Semana</h3>
+                        <ul class="plan-list">
+                            <li>Gerar 35 leads no WhatsApp</li>
+                            <li>Manter ritmo de checkouts (6+/dia)</li>
+                            <li>Converter leads em SDR</li>
+                            <li>Validar novos criativos</li>
+                        </ul>
+                        <div class="plan-meta">
+                            <div class="plan-meta-row">
+                                <span class="plan-meta-label">Meta principal</span>
+                                <span class="plan-meta-value">35 leads WhatsApp</span>
+                            </div>
+                            <div class="plan-meta-row">
+                                <span class="plan-meta-label">Responsável SDR</span>
+                                <span class="plan-meta-value">Hiago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Relatório de Tráfego — Steel Experience Chalés — Insurrecta — Will Novakoski</p>
+        </div>
+    </footer>
+</body>
+</html>
