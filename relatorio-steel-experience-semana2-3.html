@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steel Experience Chalés — Semanas 2-3 | Insurrecta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary */
+            --black: #0a0a0a;
+            --white: #f5f5f0;
+            --red: #e63946;
+            
+            /* Neutral */
+            --gray: #6b6b6b;
+            --gray-light: #d4d4d4;
+            
+            /* Border */
+            --border-subtle: rgba(245, 245, 240, 0.1);
+            --border-medium: rgba(245, 245, 240, 0.15);
+            --bg-subtle: rgba(245, 245, 240, 0.02);
+            
+            /* Accent */
+            --green: #40916c;
+            
+            /* Spacing */
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-5: 40px;
+            --space-6: 48px;
+            --space-8: 64px;
+            --space-10: 80px;
+            --space-15: 120px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Noise overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-3);
+        }
+
+        /* Hero */
+        .hero {
+            padding: var(--space-10) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .hero-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: var(--space-2);
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 72px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-2);
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .hero p {
+            font-size: 14px;
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-6);
+            margin-top: var(--space-4);
+        }
+
+        .hero-meta-item {
+            font-size: 14px;
+            color: var(--gray-light);
+        }
+
+        .hero-meta-item strong {
+            color: var(--white);
+        }
+
+        /* Section */
+        section {
+            padding: var(--space-10) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-header {
+            margin-bottom: var(--space-6);
+        }
+
+        .section-header h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 40px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-1);
+        }
+
+        .section-header p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 900px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .metric-card {
+            padding: var(--space-4);
+            border: 1px solid var(--border-medium);
+            transition: border-color 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: var(--red);
+        }
+
+        .metric-card.highlight {
+            border-left: 2px solid var(--red);
+        }
+
+        .metric-card.success {
+            border-left: 2px solid var(--green);
+        }
+
+        .metric-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: var(--space-1);
+        }
+
+        .metric-value {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .metric-note {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: var(--space-1);
+        }
+
+        .metric-note.positive {
+            color: var(--green);
+        }
+
+        /* Chart Table */
+        .chart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .chart-table th {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 400;
+            text-align: left;
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-medium);
+        }
+
+        .chart-table th:nth-child(2) {
+            width: 40%;
+        }
+
+        .chart-table td {
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .chart-table tr:hover {
+            background: var(--bg-subtle);
+        }
+
+        .chart-table tr.has-sale {
+            background: rgba(64, 145, 108, 0.08);
+        }
+
+        .chart-table tr.has-sale td:first-child {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .chart-table tr.has-sale td:first-child::after {
+            content: ' ✓';
+            font-size: 12px;
+        }
+
+        .bar-cell {
+            position: relative;
+            height: 24px;
+        }
+
+        .bar {
+            height: 100%;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: var(--space-1);
+            min-width: 28px;
+        }
+
+        .bar.sale {
+            background: var(--green);
+        }
+
+        .bar-value {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .leads-cell {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .invest-cell {
+            text-align: right;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* Leads Line Chart */
+        .leads-chart {
+            margin-top: var(--space-6);
+            padding: var(--space-4);
+            border: 1px solid var(--border-medium);
+        }
+
+        .leads-chart-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: var(--space-3);
+        }
+
+        .leads-chart svg {
+            width: 100%;
+            height: 200px;
+        }
+
+        /* Legend */
+        .chart-legend {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: 13px;
+            color: var(--gray-light);
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+        }
+
+        .legend-color.checkouts {
+            background: var(--red);
+        }
+
+        .legend-color.sale {
+            background: var(--green);
+        }
+
+        .legend-color.leads {
+            background: transparent;
+            border: 2px solid var(--gray-light);
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 400;
+            text-align: left;
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-medium);
+        }
+
+        .data-table td {
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+        }
+
+        .data-table tr:hover {
+            background: var(--bg-subtle);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border: 1px solid;
+            background: transparent;
+        }
+
+        .tag-champion {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        .tag-scale {
+            color: var(--green);
+            border-color: var(--green);
+        }
+
+        .tag-test {
+            color: var(--gray-light);
+            border-color: var(--gray-light);
+        }
+
+        .tag-pause {
+            color: var(--gray);
+            border-color: var(--gray);
+            opacity: 0.5;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-card {
+            padding: var(--space-4);
+            border: 1px solid var(--border-medium);
+            transition: border-color 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            border-color: var(--red);
+        }
+
+        .comparison-card.current {
+            border-left: 2px solid var(--red);
+        }
+
+        .comparison-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: var(--space-1);
+        }
+
+        .comparison-period {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: var(--space-3);
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-1) 0;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-label {
+            color: var(--gray);
+        }
+
+        .comparison-value {
+            font-weight: 700;
+        }
+
+        .comparison-value.up {
+            color: var(--green);
+        }
+
+        .comparison-value.down {
+            color: var(--red);
+        }
+
+        /* Funnel */
+        .funnel-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .funnel-step {
+            display: grid;
+            grid-template-columns: 100px 1fr 80px;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .funnel-label {
+            font-size: 13px;
+            text-align: right;
+            color: var(--gray);
+        }
+
+        .funnel-bar-wrap {
+            height: 40px;
+        }
+
+        .funnel-bar {
+            height: 100%;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .funnel-bar.green {
+            background: var(--green);
+        }
+
+        .funnel-rate {
+            font-size: 11px;
+            color: var(--gray);
+        }
+
+        .funnel-arrow {
+            text-align: center;
+            padding: var(--space-1) 0;
+            color: var(--gray);
+            font-size: 20px;
+        }
+
+        /* Status Grid */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 768px) {
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .status-card {
+            padding: var(--space-4);
+            border: 1px solid var(--border-medium);
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .status-card:hover {
+            border-color: var(--red);
+        }
+
+        .status-icon {
+            font-size: 32px;
+            margin-bottom: var(--space-2);
+        }
+
+        .status-value {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            font-weight: 400;
+        }
+
+        .status-value.success {
+            color: var(--green);
+        }
+
+        .status-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: var(--space-1);
+        }
+
+        /* Actions List */
+        .actions-list {
+            list-style: none;
+        }
+
+        .action-item {
+            display: flex;
+            gap: var(--space-2);
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+            color: var(--gray-light);
+        }
+
+        .action-item:last-child {
+            border-bottom: none;
+        }
+
+        .action-item::before {
+            content: '→';
+            color: var(--red);
+            flex-shrink: 0;
+        }
+
+        .action-item strong {
+            color: var(--white);
+        }
+
+        /* Goals Box */
+        .goals-box {
+            margin-top: var(--space-4);
+            padding: var(--space-4);
+            border: 1px solid var(--red);
+        }
+
+        .goals-title {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: var(--space-3);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+        }
+
+        .goal-item {
+            font-size: 14px;
+        }
+
+        .goal-item span:first-child {
+            color: var(--gray);
+        }
+
+        .goal-item span:last-child {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--space-6) 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            body::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HERO -->
+        <header class="hero">
+            <div class="hero-label">Relatório de Performance</div>
+            <h1>Steel Experience <span>Chalés</span></h1>
+            <p>Análise consolidada das semanas 2 e 3 de campanha</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">Período: <strong>25/01 - 06/02</strong></div>
+                <div class="hero-meta-item">Dias: <strong>13</strong></div>
+                <div class="hero-meta-item">Evento: <strong>19-21/02</strong></div>
+            </div>
+        </header>
+
+        <!-- RESUMO EXECUTIVO -->
+        <section>
+            <div class="section-header">
+                <h2>Resumo Executivo</h2>
+                <p>Visão geral do período completo</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card highlight">
+                    <div class="metric-label">Investimento</div>
+                    <div class="metric-value">R$ 745</div>
+                    <div class="metric-note">R$ 57,31/dia</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Checkouts</div>
+                    <div class="metric-value">57</div>
+                    <div class="metric-note">4,4/dia</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Leads WPP</div>
+                    <div class="metric-value">80</div>
+                    <div class="metric-note">6,2/dia</div>
+                </div>
+                <div class="metric-card success">
+                    <div class="metric-label">Vendas</div>
+                    <div class="metric-value">2</div>
+                    <div class="metric-note positive">R$ 1.875,00</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">CTR Médio</div>
+                    <div class="metric-value">1,33%</div>
+                    <div class="metric-note">Ok</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">CPC Médio</div>
+                    <div class="metric-value">R$ 2,39</div>
+                    <div class="metric-note">—</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Custo/Checkout</div>
+                    <div class="metric-value">R$ 13</div>
+                    <div class="metric-note positive">✓ Excelente</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Custo/Lead</div>
+                    <div class="metric-value">R$ 9,31</div>
+                    <div class="metric-note positive">✓ Excelente</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERFORMANCE POR DIA -->
+        <section>
+            <div class="section-header">
+                <h2>Performance por Dia</h2>
+                <p>Checkouts iniciados por dia</p>
+            </div>
+            
+            <table class="chart-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Checkouts</th>
+                        <th>Leads</th>
+                        <th>Investido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>25/01</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 0%; min-width: 28px;"><span class="bar-value">0</span></div></div></td>
+                        <td class="leads-cell">1</td>
+                        <td class="invest-cell">R$ 0,21</td>
+                    </tr>
+                    <tr>
+                        <td>26/01</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 7.7%;"><span class="bar-value">1</span></div></div></td>
+                        <td class="leads-cell">0</td>
+                        <td class="invest-cell">R$ 0,02</td>
+                    </tr>
+                    <tr>
+                        <td>27/01</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 7.7%;"><span class="bar-value">1</span></div></div></td>
+                        <td class="leads-cell">0</td>
+                        <td class="invest-cell">R$ 44,92</td>
+                    </tr>
+                    <tr>
+                        <td>28/01</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 23.1%;"><span class="bar-value">3</span></div></div></td>
+                        <td class="leads-cell">2</td>
+                        <td class="invest-cell">R$ 54,27</td>
+                    </tr>
+                    <tr>
+                        <td>29/01</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 46.2%;"><span class="bar-value">6</span></div></div></td>
+                        <td class="leads-cell">1</td>
+                        <td class="invest-cell">R$ 43,84</td>
+                    </tr>
+                    <tr>
+                        <td>30/01</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 30.8%;"><span class="bar-value">4</span></div></div></td>
+                        <td class="leads-cell">2</td>
+                        <td class="invest-cell">R$ 32,09</td>
+                    </tr>
+                    <tr class="has-sale">
+                        <td>31/01</td>
+                        <td><div class="bar-cell"><div class="bar sale" style="width: 15.4%;"><span class="bar-value">2</span></div></div></td>
+                        <td class="leads-cell">1</td>
+                        <td class="invest-cell">R$ 32,31</td>
+                    </tr>
+                    <tr>
+                        <td>01/02</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 53.8%;"><span class="bar-value">7</span></div></div></td>
+                        <td class="leads-cell">0</td>
+                        <td class="invest-cell">R$ 49,76</td>
+                    </tr>
+                    <tr>
+                        <td>02/02</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 53.8%;"><span class="bar-value">7</span></div></div></td>
+                        <td class="leads-cell">10</td>
+                        <td class="invest-cell">R$ 93,23</td>
+                    </tr>
+                    <tr>
+                        <td>03/02</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 30.8%;"><span class="bar-value">4</span></div></div></td>
+                        <td class="leads-cell">19</td>
+                        <td class="invest-cell">R$ 88,76</td>
+                    </tr>
+                    <tr>
+                        <td>04/02</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 38.5%;"><span class="bar-value">5</span></div></div></td>
+                        <td class="leads-cell">17</td>
+                        <td class="invest-cell">R$ 111,38</td>
+                    </tr>
+                    <tr class="has-sale">
+                        <td>05/02</td>
+                        <td><div class="bar-cell"><div class="bar sale" style="width: 100%;"><span class="bar-value">13</span></div></div></td>
+                        <td class="leads-cell">15</td>
+                        <td class="invest-cell">R$ 117,11</td>
+                    </tr>
+                    <tr>
+                        <td>06/02</td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 30.8%;"><span class="bar-value">4</span></div></div></td>
+                        <td class="leads-cell">12</td>
+                        <td class="invest-cell">R$ 77,15</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Leads Line Chart -->
+            <div class="leads-chart">
+                <div class="leads-chart-title">Evolução de Leads WhatsApp</div>
+                <svg viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet">
+                    <!-- Grid lines -->
+                    <line x1="50" y1="180" x2="750" y2="180" stroke="rgba(245,245,240,0.1)" stroke-width="1"/>
+                    <line x1="50" y1="140" x2="750" y2="140" stroke="rgba(245,245,240,0.1)" stroke-width="1"/>
+                    <line x1="50" y1="100" x2="750" y2="100" stroke="rgba(245,245,240,0.1)" stroke-width="1"/>
+                    <line x1="50" y1="60" x2="750" y2="60" stroke="rgba(245,245,240,0.1)" stroke-width="1"/>
+                    <line x1="50" y1="20" x2="750" y2="20" stroke="rgba(245,245,240,0.1)" stroke-width="1"/>
+                    
+                    <!-- Y axis labels -->
+                    <text x="40" y="185" fill="#6b6b6b" font-size="10" text-anchor="end" font-family="Space Mono, monospace">0</text>
+                    <text x="40" y="145" fill="#6b6b6b" font-size="10" text-anchor="end" font-family="Space Mono, monospace">5</text>
+                    <text x="40" y="105" fill="#6b6b6b" font-size="10" text-anchor="end" font-family="Space Mono, monospace">10</text>
+                    <text x="40" y="65" fill="#6b6b6b" font-size="10" text-anchor="end" font-family="Space Mono, monospace">15</text>
+                    <text x="40" y="25" fill="#6b6b6b" font-size="10" text-anchor="end" font-family="Space Mono, monospace">20</text>
+                    
+                    <!-- X axis labels -->
+                    <text x="100" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">25</text>
+                    <text x="154" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">26</text>
+                    <text x="208" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">27</text>
+                    <text x="262" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">28</text>
+                    <text x="316" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">29</text>
+                    <text x="370" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">30</text>
+                    <text x="424" y="195" fill="#40916c" font-size="9" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700">31✓</text>
+                    <text x="478" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">01</text>
+                    <text x="532" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">02</text>
+                    <text x="586" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">03</text>
+                    <text x="640" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">04</text>
+                    <text x="694" y="195" fill="#40916c" font-size="9" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700">05✓</text>
+                    <text x="748" y="195" fill="#6b6b6b" font-size="9" text-anchor="middle" font-family="Space Mono, monospace">06</text>
+                    
+                    <!-- Line connecting all points -->
+                    <!-- Data: 1,0,0,2,1,2,1,0,10,19,17,15,12 -->
+                    <!-- Y scale: 0=180, 20=20 (8px per unit) -->
+                    <polyline 
+                        fill="none" 
+                        stroke="#d4d4d4" 
+                        stroke-width="2"
+                        stroke-linejoin="round"
+                        points="
+                            100,172
+                            154,180
+                            208,180
+                            262,164
+                            316,172
+                            370,164
+                            424,172
+                            478,180
+                            532,100
+                            586,28
+                            640,44
+                            694,60
+                            748,84
+                        "
+                    />
+                    
+                    <!-- Points -->
+                    <circle cx="100" cy="172" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="154" cy="180" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="208" cy="180" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="262" cy="164" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="316" cy="172" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="370" cy="164" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="424" cy="172" r="6" fill="#0a0a0a" stroke="#40916c" stroke-width="2"/>
+                    <circle cx="478" cy="180" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="532" cy="100" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="586" cy="28" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="640" cy="44" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    <circle cx="694" cy="60" r="6" fill="#0a0a0a" stroke="#40916c" stroke-width="2"/>
+                    <circle cx="748" cy="84" r="5" fill="#0a0a0a" stroke="#d4d4d4" stroke-width="2"/>
+                    
+                    <!-- Value labels on high points -->
+                    <text x="586" y="18" fill="#f5f5f0" font-size="11" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700">19</text>
+                    <text x="640" y="34" fill="#f5f5f0" font-size="11" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700">17</text>
+                    <text x="694" y="50" fill="#40916c" font-size="11" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700">15</text>
+                    <text x="748" y="74" fill="#f5f5f0" font-size="11" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700">12</text>
+                    <text x="532" y="90" fill="#f5f5f0" font-size="11" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700">10</text>
+                </svg>
+            </div>
+
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <div class="legend-color checkouts"></div>
+                    <span>Checkouts</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color sale"></div>
+                    <span>Dia com venda</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color leads"></div>
+                    <span>Leads WhatsApp</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERFORMANCE POR CRIATIVO -->
+        <section>
+            <div class="section-header">
+                <h2>Performance por Criativo</h2>
+                <p>Ranking dos anúncios por resultado</p>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Criativo</th>
+                        <th>Invest.</th>
+                        <th>Chk</th>
+                        <th>Leads</th>
+                        <th>Vendas</th>
+                        <th>CTR</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>wpp - mora longe</strong></td>
+                        <td>R$ 96,85</td>
+                        <td>8</td>
+                        <td>29</td>
+                        <td style="color: var(--green);">1 ✓</td>
+                        <td>0,99%</td>
+                        <td><span class="tag tag-champion">Campeão</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>wpp - para quem é</strong></td>
+                        <td>R$ 80,24</td>
+                        <td>2</td>
+                        <td>26</td>
+                        <td>0</td>
+                        <td>1,36%</td>
+                        <td><span class="tag tag-scale">Escalar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>11 - luiz - chalés</strong></td>
+                        <td>R$ 91,28</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>1,61%</td>
+                        <td><span class="tag tag-champion">Campeão</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>01 - cris - chalés</strong></td>
+                        <td>R$ 264,04</td>
+                        <td>11</td>
+                        <td>3</td>
+                        <td style="color: var(--green);">1 ✓</td>
+                        <td>1,25%</td>
+                        <td><span class="tag tag-champion">Campeão</span></td>
+                    </tr>
+                    <tr>
+                        <td>wpp - não sabe se é pra você</td>
+                        <td>R$ 24,52</td>
+                        <td>3</td>
+                        <td>9</td>
+                        <td>0</td>
+                        <td>1,13%</td>
+                        <td><span class="tag tag-scale">Escalar</span></td>
+                    </tr>
+                    <tr>
+                        <td>02 - cris - chalés</td>
+                        <td>R$ 65,16</td>
+                        <td>9</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>1,67%</td>
+                        <td><span class="tag tag-scale">Escalar</span></td>
+                    </tr>
+                    <tr>
+                        <td>rkmt - ultima chamada</td>
+                        <td>R$ 47,24</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>1,58%</td>
+                        <td><span class="tag tag-test">Testar</span></td>
+                    </tr>
+                    <tr>
+                        <td>08 - cris - chalés</td>
+                        <td>R$ 34,88</td>
+                        <td>4</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2,11%</td>
+                        <td><span class="tag tag-test">Testar</span></td>
+                    </tr>
+                    <tr style="opacity: 0.5;">
+                        <td>05 - cris - chalés</td>
+                        <td>R$ 1,14</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0%</td>
+                        <td><span class="tag tag-pause">Pausar</span></td>
+                    </tr>
+                    <tr style="opacity: 0.5;">
+                        <td>07 - cris - chalés</td>
+                        <td>R$ 1,11</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0%</td>
+                        <td><span class="tag tag-pause">Pausar</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- COMPARATIVO SEMANAL -->
+        <section>
+            <div class="section-header">
+                <h2>Comparativo Semanal</h2>
+                <p>Evolução entre as semanas</p>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-title">Semana 2</div>
+                    <div class="comparison-period">27/01 - 02/02 (7 dias)</div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Investimento</span>
+                        <span class="comparison-value">R$ 350,42</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Invest/dia</span>
+                        <span class="comparison-value">R$ 50,06</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Checkouts</span>
+                        <span class="comparison-value">30 (4,3/dia)</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Leads WPP</span>
+                        <span class="comparison-value">16 (2,3/dia)</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Vendas</span>
+                        <span class="comparison-value">1</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">CTR</span>
+                        <span class="comparison-value">1,60%</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Custo/Lead</span>
+                        <span class="comparison-value">R$ 21,90</span>
+                    </div>
+                </div>
+                <div class="comparison-card current">
+                    <div class="comparison-title">Semana 3</div>
+                    <div class="comparison-period">03/02 - 06/02 (4 dias)</div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Investimento</span>
+                        <span class="comparison-value">R$ 394,40</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Invest/dia</span>
+                        <span class="comparison-value down">R$ 98,60 ↑97%</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Checkouts</span>
+                        <span class="comparison-value up">26 (6,5/dia) ↑51%</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Leads WPP</span>
+                        <span class="comparison-value up">63 (15,8/dia) ↑587%</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Vendas</span>
+                        <span class="comparison-value">1</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">CTR</span>
+                        <span class="comparison-value">1,17%</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Custo/Lead</span>
+                        <span class="comparison-value up">R$ 6,26 ↓71%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FUNIL -->
+        <section>
+            <div class="section-header">
+                <h2>Funil de Conversão</h2>
+                <p>Jornada completa do tráfego</p>
+            </div>
+            <div class="funnel-container">
+                <div class="funnel-step">
+                    <div class="funnel-label">Impressões</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width: 100%;">23.395</div>
+                    </div>
+                    <div class="funnel-rate">100%</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-label">Cliques</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width: 25%;">312</div>
+                    </div>
+                    <div class="funnel-rate">1,33% CTR</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-label">Checkouts</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width: 12%;">57</div>
+                    </div>
+                    <div class="funnel-rate">18,3% cliques</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-label">Vendas</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar green" style="width: 6%; min-width: 50px;">2</div>
+                    </div>
+                    <div class="funnel-rate">3,5% chk→venda</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATUS ATUAL -->
+        <section>
+            <div class="section-header">
+                <h2>Status Atual</h2>
+                <p>Situação em 06/02/2026</p>
+            </div>
+            <div class="status-grid">
+                <div class="status-card">
+                    <div class="status-icon">🎯</div>
+                    <div class="status-value">15</div>
+                    <div class="status-label">Meta de Alunos</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon">✓</div>
+                    <div class="status-value success">2</div>
+                    <div class="status-label">Vendas Confirmadas</div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon">📱</div>
+                    <div class="status-value">80</div>
+                    <div class="status-label">Leads em SDR</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANO SEMANA 4 -->
+        <section>
+            <div class="section-header">
+                <h2>Plano Semana 4</h2>
+                <p>Ações para 07/02 - 13/02</p>
+            </div>
+            <ul class="actions-list">
+                <li class="action-item"><strong>Aumentar investimento em WhatsApp</strong> — Campanha WPP gerando leads a R$ 6,26. Aumentar budget para 40% do total.</li>
+                <li class="action-item"><strong>Escalar criativos campeões</strong> — "wpp - mora longe", "11 - luiz - chalés" e "01 - cris - chalés"</li>
+                <li class="action-item"><strong>Intensificar remarketing</strong> — Aumentar budget de RMKT de 8,5% para 15%. Público quente.</li>
+                <li class="action-item"><strong>Acelerar conversão de leads</strong> — 80 leads precisam de follow-up. Faltam 13 dias para o evento.</li>
+                <li class="action-item"><strong>Novos criativos de urgência</strong> — Variações com contagem regressiva e últimas vagas.</li>
+            </ul>
+            <div class="goals-box">
+                <div class="goals-title">Metas Semana 4</div>
+                <div class="goals-grid">
+                    <div class="goal-item">
+                        <span>Leads WPP: </span>
+                        <span>+50</span>
+                    </div>
+                    <div class="goal-item">
+                        <span>Vendas: </span>
+                        <span>+5</span>
+                    </div>
+                    <div class="goal-item">
+                        <span>Orçamento: </span>
+                        <span>R$ 100-120/dia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Relatório gerado em 06/02/2026 — Steel Experience Chalés — Insurrecta</p>
+        </footer>
+    </div>
+</body>
+</html>
