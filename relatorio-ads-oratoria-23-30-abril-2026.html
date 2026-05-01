@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Ads — Oratória — 23 a 30 de Abril 2026 | Insurrecta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #f5f5f0;
+            --red: #e63946;
+            --gray: #6b6b6b;
+            --gray-light: #d4d4d4;
+            --border-subtle: rgba(245, 245, 240, 0.1);
+            --border-medium: rgba(245, 245, 240, 0.15);
+            --bg-subtle: rgba(245, 245, 240, 0.02);
+            --green: #40916c;
+            --orange: #e09f3e;
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-5: 40px;
+            --space-6: 48px;
+            --space-8: 64px;
+            --space-10: 80px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-3); }
+
+        .hero {
+            padding: var(--space-10) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: var(--space-2);
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-2);
+            line-height: 1.1;
+        }
+
+        .hero h1 span { font-style: italic; color: var(--red); }
+
+        .hero p {
+            font-size: 14px;
+            color: var(--gray);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-6);
+            margin-top: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item { font-size: 14px; color: var(--gray-light); }
+        .hero-meta-item strong { color: var(--white); }
+
+        section {
+            padding: var(--space-10) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-header { margin-bottom: var(--space-6); }
+
+        .section-header h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-1);
+        }
+
+        .section-header h2 span { font-style: italic; color: var(--red); }
+        .section-header p { font-size: 14px; color: var(--gray); }
+
+        .product-tag {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border: 1px solid var(--red);
+            color: var(--red);
+            margin-bottom: var(--space-3);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 900px) {
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .metric-card {
+            padding: var(--space-4);
+            border: 1px solid var(--border-medium);
+            transition: border-color 0.3s ease;
+        }
+
+        .metric-card:hover { border-color: var(--red); }
+        .metric-card.highlight { border-left: 2px solid var(--red); }
+        .metric-card.success { border-left: 2px solid var(--green); }
+        .metric-card.warning { border-left: 2px solid var(--orange); }
+        .metric-card.danger { border-left: 2px solid var(--red); }
+
+        .metric-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: var(--space-1);
+        }
+
+        .metric-value {
+            font-family: 'Instrument Serif', serif;
+            font-size: 40px;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .metric-note { font-size: 13px; color: var(--gray); margin-top: var(--space-1); }
+        .metric-note.positive { color: var(--green); }
+        .metric-note.negative { color: var(--red); }
+        .metric-note.warning { color: var(--orange); }
+
+        .chart-table { width: 100%; border-collapse: collapse; }
+
+        .chart-table th {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 400;
+            text-align: left;
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-medium);
+        }
+
+        .chart-table td {
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .chart-table tr:hover { background: var(--bg-subtle); }
+
+        .bar-cell { position: relative; height: 24px; }
+
+        .bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: var(--space-1);
+            min-width: 28px;
+            background: var(--red);
+        }
+
+        .bar-value { font-size: 11px; font-weight: 700; color: var(--white); }
+
+        .invest-cell { text-align: right; color: var(--gray); font-size: 13px; }
+
+        .data-table { width: 100%; border-collapse: collapse; }
+
+        .data-table th {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 400;
+            text-align: left;
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-medium);
+        }
+
+        .data-table td {
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 13px;
+        }
+
+        .data-table tr:hover { background: var(--bg-subtle); }
+        .data-table .num { text-align: right; }
+        .data-table .sale-cell { color: var(--green); font-weight: 700; }
+        .data-table .danger-cell { color: var(--red); }
+
+        .tag {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid;
+            background: transparent;
+            white-space: nowrap;
+        }
+
+        .tag-champion { color: var(--red); border-color: var(--red); }
+        .tag-scale { color: var(--green); border-color: var(--green); }
+        .tag-test { color: var(--gray-light); border-color: var(--gray-light); }
+        .tag-pause { color: var(--gray); border-color: var(--gray); opacity: 0.7; }
+        .tag-warning { color: var(--orange); border-color: var(--orange); }
+
+        .category-block { margin-bottom: var(--space-6); }
+
+        .category-header {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: var(--space-3);
+            padding-bottom: var(--space-1);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .category-header.gray { color: var(--gray); }
+        .category-header.green { color: var(--green); }
+        .category-header.orange { color: var(--orange); }
+
+        .category-summary {
+            font-size: 13px;
+            color: var(--gray-light);
+            margin-bottom: var(--space-3);
+            line-height: 1.7;
+        }
+
+        .funnel-container { max-width: 700px; margin: 0 auto; }
+
+        .funnel-step {
+            display: grid;
+            grid-template-columns: 140px 1fr 110px;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .funnel-label { font-size: 13px; text-align: right; color: var(--gray); }
+        .funnel-bar-wrap { height: 40px; }
+
+        .funnel-bar {
+            height: 100%;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .funnel-bar.green { background: var(--green); }
+        .funnel-rate { font-size: 11px; color: var(--gray); text-align: right; }
+
+        .funnel-arrow {
+            text-align: center;
+            padding: var(--space-1) 0;
+            color: var(--gray);
+            font-size: 20px;
+        }
+
+        .insight-box {
+            padding: var(--space-4);
+            background: var(--bg-subtle);
+            border-left: 2px solid var(--red);
+            margin-top: var(--space-4);
+            font-size: 14px;
+            color: var(--gray-light);
+            line-height: 1.8;
+        }
+
+        .insight-box strong { color: var(--white); }
+
+        .insight-box.warning { border-left-color: var(--orange); }
+        .insight-box.success { border-left-color: var(--green); }
+
+        .actions-list { list-style: none; }
+
+        .action-item {
+            display: flex;
+            gap: var(--space-2);
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+            color: var(--gray-light);
+            line-height: 1.7;
+        }
+
+        .action-item:last-child { border-bottom: none; }
+
+        .action-item::before {
+            content: '→';
+            color: var(--red);
+            flex-shrink: 0;
+        }
+
+        .action-item strong { color: var(--white); }
+
+        .goals-box {
+            margin-top: var(--space-4);
+            padding: var(--space-4);
+            border: 1px solid var(--red);
+        }
+
+        .goals-title {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: var(--space-3);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-2);
+        }
+
+        @media (max-width: 600px) {
+            .goals-grid { grid-template-columns: 1fr; }
+        }
+
+        .goal-item {
+            font-size: 13px;
+            color: var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-1) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .goal-item span:last-child { color: var(--white); font-weight: 700; }
+
+        .compare-table { width: 100%; border-collapse: collapse; }
+
+        .compare-table th {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 400;
+            text-align: left;
+            padding: var(--space-2);
+            border-bottom: 1px solid var(--border-medium);
+        }
+
+        .compare-table td {
+            padding: var(--space-3) var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+        }
+
+        .compare-table .num { text-align: right; }
+        .compare-table .delta-pos { color: var(--green); font-weight: 700; }
+        .compare-table .delta-neg { color: var(--red); font-weight: 700; }
+
+        footer {
+            padding: var(--space-5) 0;
+            text-align: center;
+            font-size: 12px;
+            color: var(--gray);
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <div class="hero-label">Análise de Performance</div>
+            <h1>Ads <span>Oratória</span><br>23 a 30 Abr 2026</h1>
+            <p>Escola dos Oradores — diagnóstico semanal com comparação à janela anterior (16-22/04) e categorização de criativos por estágio de teste.</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item"><strong>189</strong> compras</div>
+                <div class="hero-meta-item"><strong>R$ 39.045</strong> investidos</div>
+                <div class="hero-meta-item"><strong>R$ 207</strong> custo/compra</div>
+                <div class="hero-meta-item"><strong>87</strong> criativos ativos</div>
+            </div>
+        </header>
+
+        <!-- COMPARATIVO COM SEMANA ANTERIOR -->
+        <section>
+            <div class="section-header">
+                <div class="product-tag">Oratória</div>
+                <h2>Semana <span>vs Semana</span></h2>
+                <p>Comparação 23-30/04 (8 dias) com 16-22/04 (7 dias) — médias diárias para correção de janela</p>
+            </div>
+
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th class="num">23-30/04</th>
+                        <th class="num">16-22/04</th>
+                        <th class="num">Variação (média/dia)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Compras totais</td>
+                        <td class="num">189</td>
+                        <td class="num">246</td>
+                        <td class="num delta-neg">−32,8%</td>
+                    </tr>
+                    <tr>
+                        <td>Investimento</td>
+                        <td class="num">R$ 39.045</td>
+                        <td class="num">R$ 46.828</td>
+                        <td class="num delta-neg">−27,1%</td>
+                    </tr>
+                    <tr>
+                        <td>Custo por compra</td>
+                        <td class="num">R$ 207</td>
+                        <td class="num">R$ 190</td>
+                        <td class="num delta-neg">+8,9%</td>
+                    </tr>
+                    <tr>
+                        <td>Compras/dia (média)</td>
+                        <td class="num">23,6</td>
+                        <td class="num">35,1</td>
+                        <td class="num delta-neg">−32,8%</td>
+                    </tr>
+                    <tr>
+                        <td>Criativos ativos</td>
+                        <td class="num">87</td>
+                        <td class="num">~62</td>
+                        <td class="num delta-pos">+40%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box warning">
+                <strong>Oratória entrou em desaceleração.</strong> Compras caíram 33% por dia mesmo com 87 criativos ativos (vs ~62 da semana anterior) — mais criativo no ar e menos venda. O custo por compra subiu de R$ 190 para R$ 207. A queda foi puxada por <strong>três fatores combinados</strong>: (1) saturação dos campeões antigos — ADV_086 H6 perdeu velocidade após 4 semanas, (2) novos hooks da série ADV_111 (H6-H10) entraram com performance morna, (3) <strong>orçamento desviado pra TR</strong>, que disparou no mesmo período. A semana 28-30/04 foi a pior — 4 compras no dia 28 sinaliza pausa de algum criativo importante ou rejeição do público. Próxima semana precisa <strong>retomar o produto que estava ganhando</strong>: rotação mais rápida + escalada do que sobrou bom.
+            </div>
+        </section>
+
+        <!-- EVOLUÇÃO DIÁRIA -->
+        <section>
+            <div class="section-header">
+                <h2>Evolução <span>Diária</span></h2>
+                <p>Compras de Oratória dia a dia — escala relativa ao maior dia (24/04)</p>
+            </div>
+
+            <table class="chart-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Compras</th>
+                        <th class="num">Investimento</th>
+                        <th class="num">Custo/Compra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>23/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 94.7%;"><span class="bar-value">36</span></div></div></td>
+                        <td class="invest-cell">R$ 6.618</td>
+                        <td class="invest-cell">R$ 184</td>
+                    </tr>
+                    <tr>
+                        <td><strong>24/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 100%;"><span class="bar-value">38</span></div></div></td>
+                        <td class="invest-cell">R$ 7.655</td>
+                        <td class="invest-cell">R$ 201</td>
+                    </tr>
+                    <tr>
+                        <td><strong>25/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 92.1%;"><span class="bar-value">35</span></div></div></td>
+                        <td class="invest-cell">R$ 5.865</td>
+                        <td class="invest-cell">R$ 168</td>
+                    </tr>
+                    <tr>
+                        <td><strong>26/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 73.7%;"><span class="bar-value">28</span></div></div></td>
+                        <td class="invest-cell">R$ 6.604</td>
+                        <td class="invest-cell">R$ 236</td>
+                    </tr>
+                    <tr>
+                        <td><strong>27/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 60.5%;"><span class="bar-value">23</span></div></div></td>
+                        <td class="invest-cell">R$ 4.609</td>
+                        <td class="invest-cell">R$ 200</td>
+                    </tr>
+                    <tr>
+                        <td><strong>28/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 10.5%; background: var(--red);"><span class="bar-value">4</span></div></div></td>
+                        <td class="invest-cell">R$ 2.989</td>
+                        <td class="invest-cell" style="color: var(--red);">R$ 747</td>
+                    </tr>
+                    <tr>
+                        <td><strong>29/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 42.1%;"><span class="bar-value">16</span></div></div></td>
+                        <td class="invest-cell">R$ 2.027</td>
+                        <td class="invest-cell">R$ 127</td>
+                    </tr>
+                    <tr>
+                        <td><strong>30/04</strong></td>
+                        <td><div class="bar-cell"><div class="bar" style="width: 23.7%;"><span class="bar-value">9</span></div></div></td>
+                        <td class="invest-cell">R$ 2.679</td>
+                        <td class="invest-cell">R$ 298</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box">
+                <strong>A primeira metade da semana segurou o produto.</strong> 23-26/04 entregou em média 34 compras/dia com custo aceitável (R$ 168-236). A partir de 27/04 a curva despencou: <strong>3 dias seguidos abaixo das 25 compras</strong>. O dia 28/04 foi crítico — 4 compras com R$ 2.989 investidos = R$ 747 por compra. Esse padrão sugere ou (1) saturação rápida do público ou (2) algum criativo de alta performance pausado entre 26 e 27/04. <strong>Importante:</strong> o investimento também caiu (R$ 6.604 → R$ 2.027), então a queda em compras é proporcional — o orçamento foi reduzido. Não é catástrofe de performance pura, mas a pergunta é <em>por que</em> o orçamento caiu.
+            </div>
+        </section>
+
+        <!-- 1. ANÚNCIOS NOVOS VALIDADOS -->
+        <section>
+            <div class="section-header">
+                <div class="product-tag">Oratória</div>
+                <h2>Novos <span>Validados</span></h2>
+                <p>Criativos que estrearam de 23/04 em diante e já trouxeram pelo menos 1 compra</p>
+            </div>
+
+            <div class="category-summary">
+                21 criativos novos validados — somaram <strong>58 compras</strong> e R$ 10.369 de investimento. Custo médio por compra: <strong>R$ 179</strong>. <span style="color: var(--gray);">Destaque: a série ADV_111 (H2, H5, H8, H9, H10) entregou 26 compras em 6 hooks — o ADV inteiro entrou no ar de uma vez e validou a maioria dos hooks.</span>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Criativo</th>
+                        <th>Estreia</th>
+                        <th class="num">Gasto</th>
+                        <th class="num">Compras</th>
+                        <th class="num">Custo/Compra</th>
+                        <th class="num">CTR</th>
+                        <th class="num">Hook Rate</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ADV_111 · H2 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 1.024</td>
+                        <td class="num sale-cell">8 ✓</td>
+                        <td class="num">R$ 128</td>
+                        <td class="num">0,87%</td>
+                        <td class="num">2,11%</td>
+                        <td><span class="tag tag-champion">Escalar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_ML06</strong> (genérico)</td>
+                        <td>24/04</td>
+                        <td class="num">R$ 1.043</td>
+                        <td class="num sale-cell">8 ✓</td>
+                        <td class="num">R$ 130</td>
+                        <td class="num">0,65%</td>
+                        <td class="num">3,19%</td>
+                        <td><span class="tag tag-scale">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_111 · H10 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 992</td>
+                        <td class="num sale-cell">6 ✓</td>
+                        <td class="num">R$ 165</td>
+                        <td class="num">0,60%</td>
+                        <td class="num">2,35%</td>
+                        <td><span class="tag tag-scale">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_131 · H3 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 619</td>
+                        <td class="num sale-cell">6 ✓</td>
+                        <td class="num">R$ 103</td>
+                        <td class="num">1,00%</td>
+                        <td class="num">3,38%</td>
+                        <td><span class="tag tag-champion">Escalar — custo baixo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_111 · H5 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 1.135</td>
+                        <td class="num sale-cell">4 ✓</td>
+                        <td class="num">R$ 284</td>
+                        <td class="num">0,74%</td>
+                        <td class="num">1,66%</td>
+                        <td><span class="tag tag-warning">Custo alto — monitorar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_111 · H8 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 888</td>
+                        <td class="num sale-cell">4 ✓</td>
+                        <td class="num">R$ 222</td>
+                        <td class="num">0,73%</td>
+                        <td class="num">2,11%</td>
+                        <td><span class="tag tag-scale">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_111 · H9 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 724</td>
+                        <td class="num sale-cell">4 ✓</td>
+                        <td class="num">R$ 181</td>
+                        <td class="num">0,60%</td>
+                        <td class="num">2,02%</td>
+                        <td><span class="tag tag-scale">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_039 · H5 · V7</strong></td>
+                        <td>29/04</td>
+                        <td class="num">R$ 511</td>
+                        <td class="num sale-cell">3 ✓</td>
+                        <td class="num">R$ 170</td>
+                        <td class="num">0,82%</td>
+                        <td class="num">3,44%</td>
+                        <td><span class="tag tag-test">Dar tempo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_135 · H1 · V1</strong></td>
+                        <td>26/04</td>
+                        <td class="num">R$ 187</td>
+                        <td class="num sale-cell">2 ✓</td>
+                        <td class="num">R$ 94</td>
+                        <td class="num">1,25%</td>
+                        <td class="num">3,21%</td>
+                        <td><span class="tag tag-scale">Manter — único H bom da série</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_ML03</strong> (genérico)</td>
+                        <td>24/04</td>
+                        <td class="num">R$ 482</td>
+                        <td class="num sale-cell">2 ✓</td>
+                        <td class="num">R$ 241</td>
+                        <td class="num">0,70%</td>
+                        <td class="num">6,21%</td>
+                        <td><span class="tag tag-test">Dar tempo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_112 · H2/H3/H7/H8</strong> (4 hooks)</td>
+                        <td>30/04</td>
+                        <td class="num">R$ 815</td>
+                        <td class="num sale-cell">4 ✓</td>
+                        <td class="num">R$ 204</td>
+                        <td class="num">~0,84%</td>
+                        <td class="num">~2,20%</td>
+                        <td><span class="tag tag-test">Estreou ontem — observar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_131 · H4 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 216</td>
+                        <td class="num sale-cell">1 ✓</td>
+                        <td class="num">R$ 216</td>
+                        <td class="num">1,23%</td>
+                        <td class="num">3,20%</td>
+                        <td><span class="tag tag-test">Dar tempo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_135 · H2/H4 · V1</strong> (2 hooks)</td>
+                        <td>26/04</td>
+                        <td class="num">R$ 611</td>
+                        <td class="num sale-cell">2 ✓</td>
+                        <td class="num">R$ 305</td>
+                        <td class="num">~0,77%</td>
+                        <td class="num">~2,28%</td>
+                        <td><span class="tag tag-warning">Custo alto</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_119 RMKT · H1 · V7</strong></td>
+                        <td>29/04</td>
+                        <td class="num">R$ 338</td>
+                        <td class="num sale-cell">1 ✓</td>
+                        <td class="num">R$ 338</td>
+                        <td class="num">1,06%</td>
+                        <td class="num">2,80%</td>
+                        <td><span class="tag tag-test">Dar tempo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_132 · H1 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 68</td>
+                        <td class="num sale-cell">1 ✓</td>
+                        <td class="num">R$ 68</td>
+                        <td class="num">0,68%</td>
+                        <td class="num">2,34%</td>
+                        <td><span class="tag tag-test">Sub-investido — dar budget</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_ML05/ML07</strong> (genéricos)</td>
+                        <td>24/04</td>
+                        <td class="num">R$ 715</td>
+                        <td class="num sale-cell">2 ✓</td>
+                        <td class="num">R$ 358</td>
+                        <td class="num">~0,62%</td>
+                        <td class="num">~3,35%</td>
+                        <td><span class="tag tag-pause">Pausar — caro</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box success">
+                <strong>Os melhores estreantes da semana foram os de custo baixo.</strong> ADV_131 H3_V1 (R$ 103/compra) e ADV_135 H1_V1 (R$ 94/compra) são os candidatos a escalar imediatamente — abaixo da meta de R$ 160. <strong>A série ADV_111 funcionou parcialmente:</strong> de 10 hooks subidos, 5 converteram (H2, H5, H8, H9, H10) e 5 não decolaram. Padrão a observar: H2 trouxe 8 compras a R$ 128/compra — concentrar budget aqui. <strong>Os ADV_ML genéricos têm hook rate alto (3-6%) mas CTR baixo (0,6-0,7%):</strong> fisgam mas não convertem o clique — sugere desconexão entre o gancho e a oferta. Não vale escalar até resolver isso.
+            </div>
+        </section>
+
+        <!-- 2. ANTIGOS COM BOA PERFORMANCE -->
+        <section>
+            <div class="section-header">
+                <div class="product-tag">Oratória</div>
+                <h2>Antigos <span>Performando</span></h2>
+                <p>Criativos que existiam antes de 23/04 e continuaram entregando ≥3 compras na janela</p>
+            </div>
+
+            <div class="category-summary">
+                11 criativos veteranos sustentaram <strong>125 compras</strong> (66% do total da semana) com R$ 22.939 investidos. Custo médio por compra: <strong>R$ 184</strong>. A espinha dorsal continua sendo a série <strong>ADV_086 H6</strong> (V4, V5, V6) e <strong>ADV_094</strong> reativada (H1, H2).
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Criativo</th>
+                        <th>1ª aparição</th>
+                        <th class="num">Gasto</th>
+                        <th class="num">Compras</th>
+                        <th class="num">Custo/Compra</th>
+                        <th class="num">CTR</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ADV_086 · H6 · V5</strong></td>
+                        <td>01/04</td>
+                        <td class="num">R$ 3.437</td>
+                        <td class="num sale-cell">21 ✓</td>
+                        <td class="num">R$ 164</td>
+                        <td class="num">1,96%</td>
+                        <td><span class="tag tag-champion">Manter — campeão</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_094 · H2 · V1</strong> (Janeiro reativado)</td>
+                        <td>27/03</td>
+                        <td class="num">R$ 2.942</td>
+                        <td class="num sale-cell">17 ✓</td>
+                        <td class="num">R$ 173</td>
+                        <td class="num">1,32%</td>
+                        <td><span class="tag tag-champion">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_109 · H3 · V1</strong></td>
+                        <td>21/04</td>
+                        <td class="num">R$ 2.652</td>
+                        <td class="num sale-cell">15 ✓</td>
+                        <td class="num">R$ 177</td>
+                        <td class="num">0,94%</td>
+                        <td><span class="tag tag-champion">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_086 · H6 · V4</strong></td>
+                        <td>01/04</td>
+                        <td class="num">R$ 3.524</td>
+                        <td class="num sale-cell">13 ✓</td>
+                        <td class="num">R$ 271</td>
+                        <td class="num">2,92%</td>
+                        <td><span class="tag tag-warning">Custo subindo — monitorar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_094 · H1 · V1</strong> (Janeiro reativado)</td>
+                        <td>27/03</td>
+                        <td class="num">R$ 2.640</td>
+                        <td class="num sale-cell">12 ✓</td>
+                        <td class="num">R$ 220</td>
+                        <td class="num">0,76%</td>
+                        <td><span class="tag tag-warning">Custo subindo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_080 RMKT · H1 · V1</strong></td>
+                        <td>18/03</td>
+                        <td class="num">R$ 886</td>
+                        <td class="num sale-cell">11 ✓</td>
+                        <td class="num">R$ 81</td>
+                        <td class="num">0,79%</td>
+                        <td><span class="tag tag-champion">RMKT barato — escalar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_086 · H6 · V6</strong></td>
+                        <td>01/04</td>
+                        <td class="num">R$ 2.188</td>
+                        <td class="num sale-cell">11 ✓</td>
+                        <td class="num">R$ 199</td>
+                        <td class="num">2,68%</td>
+                        <td><span class="tag tag-champion">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_122 RMKT · H1 · V2</strong></td>
+                        <td>21/04</td>
+                        <td class="num">R$ 1.608</td>
+                        <td class="num sale-cell">10 ✓</td>
+                        <td class="num">R$ 161</td>
+                        <td class="num">0,92%</td>
+                        <td><span class="tag tag-champion">RMKT</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_110 · H2 · V1</strong></td>
+                        <td>22/04</td>
+                        <td class="num">R$ 1.533</td>
+                        <td class="num sale-cell">9 ✓</td>
+                        <td class="num">R$ 170</td>
+                        <td class="num">1,29%</td>
+                        <td><span class="tag tag-champion">Manter</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_079 · H8 · V2</strong></td>
+                        <td>18/04</td>
+                        <td class="num">R$ 666</td>
+                        <td class="num sale-cell">3 ✓</td>
+                        <td class="num">R$ 222</td>
+                        <td class="num">4,74%</td>
+                        <td><span class="tag tag-champion">CTR 4,74% — escalar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_039 · H6 · V3</strong></td>
+                        <td>21/04</td>
+                        <td class="num">R$ 863</td>
+                        <td class="num sale-cell">3 ✓</td>
+                        <td class="num">R$ 288</td>
+                        <td class="num">0,69%</td>
+                        <td><span class="tag tag-pause">Custo alto — pausar</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box">
+                <strong>A série ADV_086 H6 perdeu fôlego mas ainda é a base.</strong> Na semana anterior (16-23/04) somou 93 compras com R$ 18.474. Esta semana caiu para 45 compras (V4+V5+V6) com R$ 9.149. Quase <strong>50% de queda</strong> — sinal claro de saturação após 4 semanas no ar. <strong>Os reativados de Janeiro (ADV_094 H1, H2) seguem entregando</strong> e juntos somaram 29 compras — vale manter a base. <strong>ADV_080 RMKT tem o melhor custo/compra do produto (R$ 81)</strong> mas com gasto modesto: pode ser ampliado de R$ 886 pra R$ 1.500-2.000. <strong>ADV_079 H8_V2 segue com CTR 4,74%</strong> — métrica de fisgada acima de qualquer outro criativo de Oratória; produzir variações desse hook é a prioridade nº 1 de criação.
+            </div>
+        </section>
+
+        <!-- 3. BOAS MÉTRICAS SEM RESULTADO -->
+        <section>
+            <div class="section-header">
+                <div class="product-tag">Oratória</div>
+                <h2>Boas Métricas, <span>Zero Compra</span></h2>
+                <p>Criativos com gasto significativo (≥R$ 200), CTR ≥1% ou Hook Rate ≥3% e nenhuma conversão</p>
+            </div>
+
+            <div class="category-summary">
+                Em Oratória, esta categoria é <strong>pequena (3 criativos / R$ 985 sem retorno)</strong> — o produto não tem o problema de "engaja mas não compra" como TR. O destaque é o <strong>ADV_086 H1_V7</strong> com Hook Rate de 7,08% e CTR 3,44% sem nenhuma compra após R$ 367 — esse merece análise específica.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Criativo</th>
+                        <th>Estreia</th>
+                        <th class="num">Gasto</th>
+                        <th class="num">Impressões</th>
+                        <th class="num">CTR</th>
+                        <th class="num">Hook Rate</th>
+                        <th>Diagnóstico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ADV_086 · H1 · V7</strong> (NOVO)</td>
+                        <td>29/04</td>
+                        <td class="num">R$ 367</td>
+                        <td class="num">15.102</td>
+                        <td class="num sale-cell">3,44%</td>
+                        <td class="num sale-cell">7,08%</td>
+                        <td><span class="tag tag-warning">Métricas top, dar mais 3 dias</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_110 · H1 · V1</strong> (Antigo)</td>
+                        <td>22/04</td>
+                        <td class="num">R$ 410</td>
+                        <td class="num">9.948</td>
+                        <td class="num">0,84%</td>
+                        <td class="num sale-cell">3,03%</td>
+                        <td><span class="tag tag-pause">H2 mesma série converteu — pausar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_135 · H6 · V1</strong> (NOVO)</td>
+                        <td>26/04</td>
+                        <td class="num">R$ 208</td>
+                        <td class="num">4.242</td>
+                        <td class="num">0,99%</td>
+                        <td class="num sale-cell">4,05%</td>
+                        <td><span class="tag tag-pause">H1 da mesma série converteu — pausar</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box warning">
+                <strong>O ADV_086 H1_V7 é o mistério da semana.</strong> Hook Rate 7,08% (3x acima da média) e CTR 3,44% (também acima da média) — o público assiste e clica. Mas zero compra em R$ 367. Como ele estreou só em 29/04, ainda é amostra muito pequena (15k impressões / 2 dias). <strong>Decisão</strong>: dar mais 3-5 dias de teste com o mesmo budget. Se mantiver hook+CTR e continuar sem compra, problema está na LP/oferta — não no criativo. <strong>Os outros dois (ADV_110 H1 e ADV_135 H6)</strong> têm a versão H2/H1 da mesma série já convertendo: a Meta vai naturalmente migrar budget — pode pausar pra acelerar o ciclo.
+            </div>
+        </section>
+
+        <!-- 4. NOVOS TESTADOS SEM PERFORMAR -->
+        <section>
+            <div class="section-header">
+                <div class="product-tag">Oratória</div>
+                <h2>Novos Testados, <span>Sem Performar</span></h2>
+                <p>Criativos novos (≥23/04) que receberam pelo menos R$ 80 de gasto e não venderam nada</p>
+            </div>
+
+            <div class="category-summary">
+                15 criativos novos queimaram <strong>R$ 3.063 sem retorno</strong>. A série <strong>ADV_135 (H3, H5, H6)</strong> é a maior decepção: 3 hooks com CTR 0,73-0,99% e nenhuma compra — só o H1 da série converteu. Os ADV_111 (H4, H6, H7) também saíram fracos — apenas 5 dos 10 hooks da série performaram.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Criativo</th>
+                        <th>Estreia</th>
+                        <th class="num">Gasto</th>
+                        <th class="num">CTR</th>
+                        <th class="num">Hook Rate</th>
+                        <th class="num">Impressões</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ADV_135 · H3 · V1</strong></td>
+                        <td>26/04</td>
+                        <td class="num">R$ 506</td>
+                        <td class="num">0,80%</td>
+                        <td class="num">2,79%</td>
+                        <td class="num">10.195</td>
+                        <td><span class="tag tag-pause">Pausar — amostra suficiente</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_ML01</strong> (genérico)</td>
+                        <td>24/04</td>
+                        <td class="num">R$ 421</td>
+                        <td class="num">0,81%</td>
+                        <td class="num">2,71%</td>
+                        <td class="num">9.405</td>
+                        <td><span class="tag tag-pause">Pausar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_131 · H6 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 215</td>
+                        <td class="num">0,76%</td>
+                        <td class="num">2,86%</td>
+                        <td class="num">4.341</td>
+                        <td><span class="tag tag-pause">Pausar — H3/H4 venderam</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_135 · H5/H6 · V1</strong> (2 hooks)</td>
+                        <td>26/04</td>
+                        <td class="num">R$ 395</td>
+                        <td class="num">~0,86%</td>
+                        <td class="num">~3,07%</td>
+                        <td class="num">8.366</td>
+                        <td><span class="tag tag-pause">Pausar — só H1 funcionou</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_112 · H4/H6 · V1</strong> (2 hooks)</td>
+                        <td>30/04</td>
+                        <td class="num">R$ 310</td>
+                        <td class="num">~0,70%</td>
+                        <td class="num">~2,50%</td>
+                        <td class="num">11.553</td>
+                        <td><span class="tag tag-test">Estreou ontem — dar mais tempo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_111 · H4 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 151</td>
+                        <td class="num">0,95%</td>
+                        <td class="num">2,49%</td>
+                        <td class="num">6.388</td>
+                        <td><span class="tag tag-pause">Pausar — outros H venderam</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_131 · H1 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 148</td>
+                        <td class="num">1,04%</td>
+                        <td class="num">3,40%</td>
+                        <td class="num">3.354</td>
+                        <td><span class="tag tag-test">CTR ok — dar mais 2 dias</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_ML04</strong> (genérico)</td>
+                        <td>24/04</td>
+                        <td class="num">R$ 144</td>
+                        <td class="num">0,73%</td>
+                        <td class="num">3,48%</td>
+                        <td class="num">2.871</td>
+                        <td><span class="tag tag-pause">Pausar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_111 · H6/H7 · V1</strong> (2 hooks)</td>
+                        <td>23/04</td>
+                        <td class="num">R$ 222</td>
+                        <td class="num">~1,01%</td>
+                        <td class="num">~2,32%</td>
+                        <td class="num">5.289</td>
+                        <td><span class="tag tag-pause">Pausar — H8/H9/H10 venderam</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_131 · H5 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 100</td>
+                        <td class="num">1,23%</td>
+                        <td class="num">3,21%</td>
+                        <td class="num">3.176</td>
+                        <td><span class="tag tag-test">CTR ok — observar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_132 · H6 · V1</strong></td>
+                        <td>26/04</td>
+                        <td class="num">R$ 83</td>
+                        <td class="num">1,33%</td>
+                        <td class="num">3,83%</td>
+                        <td class="num">1.124</td>
+                        <td><span class="tag tag-test">Amostra pequena</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box warning">
+                <strong>Lições da semana sobre testes que não pegaram.</strong> A série ADV_135 mostra um padrão claro: <strong>H1 funciona, demais hooks queimam orçamento</strong>. Quando o primeiro hook de uma série já tem custo/compra abaixo da meta, vale concentrar 70% do budget nele e testar variações de roteiro/CTA dentro do mesmo H1 antes de gastar com H3-H7. Para a série <strong>ADV_111 (10 hooks subidos de uma vez)</strong>: 5 venderam, 5 não. Custo total das que falharam: R$ 519. É aceitável — esse é o preço de descobrir quais hooks pegam. <strong>Os ADV_ML genéricos (ML01, ML04) podem ser pausados sem dó:</strong> hook rate alto mas zero conversão é assinatura de público errado fisgado pelo gancho — não vale insistir.
+            </div>
+        </section>
+
+        <!-- 5. NOVOS SEM GASTAR -->
+        <section>
+            <div class="section-header">
+                <div class="product-tag">Oratória</div>
+                <h2>Novos <span>Sub-investidos</span></h2>
+                <p>Criativos novos que mal saíram do papel — gasto inferior a R$ 80 (Meta praticamente não testou)</p>
+            </div>
+
+            <div class="category-summary">
+                11 criativos com investimento inferior a R$ 80 — totalizando <strong>R$ 397</strong>. A maioria estreou em 30/04 (último dia da janela), então amostra é insuficiente. Para os 2 que estrearam em 23-26/04 com gasto baixo, a Meta provavelmente decidiu que não eram competitivos no leilão e cortou impressões.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Criativo</th>
+                        <th>Estreia</th>
+                        <th class="num">Gasto</th>
+                        <th class="num">Impressões</th>
+                        <th class="num">Compras</th>
+                        <th>Diagnóstico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ADV_039 · H6 · V7</strong></td>
+                        <td>29/04</td>
+                        <td class="num">R$ 75,73</td>
+                        <td class="num">2.204</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-test">Estreou há 2 dias</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_132 · H1 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 67,74</td>
+                        <td class="num">1.325</td>
+                        <td class="num sale-cell">1 ✓</td>
+                        <td><span class="tag tag-scale">Converteu sub-investido — dar budget</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_135 · H7 · V1</strong></td>
+                        <td>26/04</td>
+                        <td class="num">R$ 61,19</td>
+                        <td class="num">1.398</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-pause">Série toda fraca — pausar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_080 RMKT · H1 · V2</strong></td>
+                        <td>26/04</td>
+                        <td class="num">R$ 47,18</td>
+                        <td class="num">987</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-test">V1 da mesma série converte — dar budget</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_111 · H3 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 39,53</td>
+                        <td class="num">739</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-pause">Meta cortou — pausar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_ML02</strong> (genérico)</td>
+                        <td>24/04</td>
+                        <td class="num">R$ 25,46</td>
+                        <td class="num">205</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-pause">Meta cortou — pausar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_112 · H1/H5 · V1</strong> (2 hooks)</td>
+                        <td>30/04</td>
+                        <td class="num">R$ 39,62</td>
+                        <td class="num">1.089</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-test">Estreou ontem</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_039 · H5 · V3</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 19,34</td>
+                        <td class="num">944</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-pause">Meta cortou — pausar</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_131 · H2 · V1</strong></td>
+                        <td>27/04</td>
+                        <td class="num">R$ 15,72</td>
+                        <td class="num">213</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-pause">Meta cortou — H3/H4 funcionam</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ADV_109 · H1 · V1</strong></td>
+                        <td>23/04</td>
+                        <td class="num">R$ 5,20</td>
+                        <td class="num">42</td>
+                        <td class="num">0</td>
+                        <td><span class="tag tag-pause">Meta cortou — pausar</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box">
+                <strong>Quando a Meta corta impressões, está dizendo algo.</strong> ADV_109 H1, ADV_111 H3, ADV_135 H7 e ADV_039 H5_V3 estrearam há 5-7 dias e mal passaram dos 1.000 impressões — isso significa que no leilão eles foram batidos por outros criativos do mesmo conjunto. Em vez de tentar empurrar com budget separado, a regra é simples: <strong>se a Meta não escala em 5 dias, pausar e liberar slot.</strong> A exceção valiosa aqui é o <strong>ADV_132 H1_V1</strong>: trouxe 1 compra com apenas R$ 68 (R$ 68/compra) — o melhor custo absoluto da semana. Vale isolar e dar R$ 200-300 pra confirmar o sinal.
+            </div>
+        </section>
+
+        <!-- FUNIL -->
+        <section>
+            <div class="section-header">
+                <h2>Funil de <span>Conversão</span></h2>
+                <p>Jornada do tráfego de Oratória no período (estimativa baseada em proporção de gasto)</p>
+            </div>
+            <div class="funnel-container">
+                <div class="funnel-step">
+                    <div class="funnel-label">Impressões</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width: 100%;">1.450.300</div>
+                    </div>
+                    <div class="funnel-rate">100%</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-label">Cliques</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width: 1.45%;">20.407</div>
+                    </div>
+                    <div class="funnel-rate">CTR 1,41%</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-label">Landing Pages</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width: 1.21%;">17.518</div>
+                    </div>
+                    <div class="funnel-rate">85,9% dos cliques</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-label">Checkouts</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar green" style="width: 0.10%; min-width: 70px;">1.473</div>
+                    </div>
+                    <div class="funnel-rate">8,4% das LPs</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-step">
+                    <div class="funnel-label">Compras</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar green" style="width: 0.013%; min-width: 70px;">189</div>
+                    </div>
+                    <div class="funnel-rate">12,8% dos checkouts</div>
+                </div>
+            </div>
+            <div class="insight-box">
+                <strong>O funil de Oratória continua saudável até o checkout.</strong> 85,9% dos cliques chegam na LP (excelente), 8,4% das LPs viram checkout (acima da média do mercado). <strong>O gargalo está do checkout pra compra:</strong> 12,8% — abaixo dos 20% da média geral da conta. De cada 100 pessoas que iniciam o checkout, só 13 finalizam. <strong>Hipótese</strong>: durante a queda dos dias 28-30, o tráfego que chegou no checkout pode ter encontrado oferta menos agressiva (preço normal vs promocional?), pagamento com fricção ou bug. Vale conferir CTV/CR diários da Hotmart pra confirmar.
+            </div>
+        </section>
+
+        <!-- PLANO DE AÇÃO -->
+        <section>
+            <div class="section-header">
+                <div class="product-tag">Oratória</div>
+                <h2>Plano <span>Semana 01-07/05</span></h2>
+                <p>Ações para retomar a curva — produto precisa de criativo novo + escala dos vencedores</p>
+            </div>
+
+            <ul class="actions-list">
+                <li class="action-item"><strong>Escalar imediatamente: ADV_111 H2_V1, ADV_131 H3_V1, ADV_135 H1_V1.</strong> Os três têm custo/compra abaixo de R$ 130 — bem abaixo da meta de R$ 160. Aumentar budget em +50% no início da semana e monitorar se o custo se mantém.</li>
+                <li class="action-item"><strong>Produzir variações do ADV_079 H8.</strong> CTR 4,74% segue sendo o melhor da conta há 2 semanas seguidas. H8_V3 e H8_V4 com mesmo gancho mas closes diferentes. Esse é o maior leverage de criação que existe em Oratória hoje.</li>
+                <li class="action-item"><strong>Pausar 7 criativos que queimaram orçamento sem retorno:</strong> ADV_135 H3/H5/H6/H7 (R$ 962 / 0 compras), ADV_111 H4/H6/H7 (R$ 373 / 0 compras), ADV_131 H6 (R$ 215 / 0 compras). Liberar ~R$ 1.500/semana pra novos testes.</li>
+                <li class="action-item"><strong>Decidir sobre ADV_086 H1_V7.</strong> Hook 7,08% e CTR 3,44% sem nenhuma venda em 2 dias. Dar mais 3 dias com mesmo budget — se mantiver hook+CTR e zero compra, o problema é LP/oferta, não criativo.</li>
+                <li class="action-item"><strong>Reativar e dar budget a ADV_080 RMKT H1_V1.</strong> Custo/compra de R$ 81 — o mais barato do produto. Aumentar de R$ 886 pra R$ 2.000 na semana e monitorar saturação.</li>
+                <li class="action-item"><strong>Investigar a queda dos dias 28-30/04.</strong> 4 compras em 28/04 com R$ 2.989 (R$ 747/compra) é anormal. Verificar se algum criativo top foi pausado, se houve queda de orçamento manual ou problema na LP.</li>
+                <li class="action-item"><strong>Subir os ADV_086 H1_V3, H2_V3 do estoque (mencionados no relatório anterior).</strong> Mesmo ADV do campeão (H6), hooks diferentes. ADV_086 H6 está saturando — H1/H2 podem ser a renovação natural da série.</li>
+                <li class="action-item"><strong>Monitorar série ADV_112 (estreou em 30/04).</strong> 4 hooks subidos em 1 dia, 4 venderam. Amostra pequena mas sinal positivo. Manter rodando 5-7 dias antes de decidir escala.</li>
+            </ul>
+
+            <div class="goals-box">
+                <div class="goals-title">Metas Oratória — 01-07/05</div>
+                <div class="goals-grid">
+                    <div class="goal-item">
+                        <span>Compras totais:</span>
+                        <span>≥ 235 (+24%)</span>
+                    </div>
+                    <div class="goal-item">
+                        <span>Compras/dia médio:</span>
+                        <span>≥ 33</span>
+                    </div>
+                    <div class="goal-item">
+                        <span>Custo/compra:</span>
+                        <span>≤ R$ 180</span>
+                    </div>
+                    <div class="goal-item">
+                        <span>Variações do ADV_079 H8:</span>
+                        <span>2 produzidas + subidas</span>
+                    </div>
+                    <div class="goal-item">
+                        <span>Criativos pausados:</span>
+                        <span>7 (queima de budget)</span>
+                    </div>
+                    <div class="goal-item">
+                        <span>Investimento total:</span>
+                        <span>≥ R$ 42.000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Relatório gerado em 01/05/2026 — Análise de Ads Barbara Torres — Oratória — Insurrecta — Will Novakoski</p>
+        </footer>
+    </div>
+</body>
+</html>
